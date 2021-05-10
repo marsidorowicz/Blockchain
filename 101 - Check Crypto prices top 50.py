@@ -3,8 +3,6 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import requests
 
-for i in range:
-  s = 1
 
 
 # url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
@@ -34,23 +32,26 @@ for i in range:
 
 
 def get_price():
-    url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
-    headers = {
-        'Accepts': 'application/json',
-        'X-CMC_PRO_API_KEY': '9bd9f1a9-8300-4ca6-86ab-b01975672b9f',
-    }
-    session = Session()
-    session.headers.update(headers)
-    # make a request to the coinmarketcap api
-    response1 = requests.get(url, headers=headers)
-    response_json = response1.json()
-    # extract the bitcoin price from the json data
 
-    for i in range(0, 50):
-        price = response_json['data'][i]
-        print(i)
-        print(price["name"])
-        print("Kurs {} : ".format(1), price['quote']['USD']['price'])
+    try:
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+        headers = {
+            'Accepts': 'application/json',
+            'X-CMC_PRO_API_KEY': '9bd9f1a9-8300-4ca6-86ab-b01975672b9f',
+        }
+        session = Session()
+        session.headers.update(headers)
+        # make a request to the coinmarketcap api
+        response1 = requests.get(url, headers=headers)
+        response_json = response1.json()
+        # extract the bitcoin price from the json data
 
+        for i in range(0, 50):
+            price = response_json['data'][i]
+            print(i)
+            print(price["name"])
+            print("Kurs {} : ".format(1), price['quote']['USD']['price'])
+    except Exception as e:
+        print(e)
 
 get_price()
